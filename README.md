@@ -6,7 +6,7 @@
 
 ## Stack
 - Google ADK (agent framework)
-- Gemini 2.0 Flash (transcription, translation, QA)
+- Gemini 2.5 Flash (transcription, translation, QA)
 - Vertex AI (model hosting)
 - Cloud Run Jobs (pipeline execution)
 - GCS (input/output storage)
