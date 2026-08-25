@@ -1,0 +1,10 @@
+[
+  {
+    "start_ms": 59600,
+    "end_ms": 61920,
+    "source_text": "One more round!",
+    "speaker_id": "SPEAKER_01",
+    "emotion_tag": "excited",
+    "note": "Human-confirmed. Heavily processed hype-vocal sample under an EDM drop, in the gap between 'The game won't end.' and 'The bastards who made this game.' — missed by chirp_2, chirp_3, and an automated Gemini listen-check (inconsistent across runs, see TECHNICAL.md)."
+  }
+]

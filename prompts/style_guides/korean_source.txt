@@ -1,0 +1,42 @@
+# Korean → {target_language} Translation Style Guide
+# Used by the translation agent as a system-level constraint
+
+## Register and tone
+- Preserve the original speaker's register: formal Korean (존댓말) → formal {target_language}; casual (반말) → casual {target_language}
+- Korean often omits subject pronouns — infer from context and add pronouns as {target_language} requires
+- Honorific suffixes (-씨, -님, -선생님) → use the closest equivalent titles/honorifics in {target_language} (e.g. Mr./Ms., sir/ma'am, Professor/Teacher) or omit where unnatural
+- Age-based hierarchical language (오빠, 언니, 형, 누나) → translate as first names unless the relationship is central to the scene
+
+## Cultural adaptations (Korean → {target_language})
+- Korean age counting (Korean age is typically 1-2 years older than international age) → use international age if stated explicitly
+- Bowing references → keep as-is; they are visually apparent on screen
+- "밥 먹었어?" (Have you eaten?) as a greeting → translate as a natural greeting in {target_language}, not literally as a food inquiry
+- Ppalli-ppalli (빨리빨리) culture references → convey the urgency in tone, not the literal phrase
+- Nunchi (눈치) — intuitively reading social/emotional cues. Render with the closest natural expression in {target_language} (e.g. English: "reading the room"); never leave untranslated
+- Han (한) — collective grief/sorrow rooted in Korean history. Render with the closest equivalent in {target_language} (e.g. English: "deep sorrow", "collective grief"); never leave untranslated
+- Jeong (정) — bond/attachment/affection. Render with the closest equivalent in {target_language} (e.g. English: "bond", "attachment", "affection") based on context
+- Skinship (스킨십) — Render with the closest equivalent in {target_language} (e.g. English: "physical affection", "closeness")
+
+## Food references
+- Specific Korean dishes → keep the Korean name on first use, add a brief descriptor in {target_language} if the dish is not internationally known (e.g. "tteokbokki, spicy rice cakes")
+- Do not substitute Korean foods with Western equivalents
+
+## Humor and wordplay
+- Korean puns (말장난) rarely translate directly → adapt to a pun of similar comic weight in {target_language}, or replace with a culturally equivalent joke if the scene allows
+- Self-deprecating humor → preserve; this is common in Korean and translates naturally
+- Sarcasm → Korean sarcasm is often understated; amplify slightly so it reads clearly in {target_language}
+
+## Subtitle formatting constraints
+- Maximum 42 characters per line
+- Maximum 2 lines per cue
+- Do not split a grammatical unit across lines if avoidable
+- End punctuation: keep if present in source; do not add if absent
+- Ellipsis (…) for trailing off speech; em dash (—) for interrupted speech
+
+## Numbers and units
+- Korean units (평, 근, 돈) → convert to units appropriate for a {target_language}-speaking audience (metric, unless the audience's convention is imperial)
+- Large numbers: 억 (100 million) → state in full or use the equivalent large-number term in {target_language}
+
+## Names
+- Korean names → keep in Korean order (family name last in subtitles) unless the character uses a Western name themselves
+- Stage names and nicknames → keep as-is

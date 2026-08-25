@@ -1,0 +1,50 @@
+steps:
+  # Build the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/dubbing-pipeline/app:$COMMIT_SHA'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/dubbing-pipeline/app:latest'
+      - '.'
+
+  # Push to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/dubbing-pipeline/app:$COMMIT_SHA'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/dubbing-pipeline/app:latest'
+
+  # Create job on first deploy, update on subsequent deploys
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: bash
+    args:
+      - '-c'
+      - |
+        IMAGE=us-central1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/dubbing-pipeline/app:$COMMIT_SHA
+        SA=dubbing-pipeline-sa@$PROJECT_ID.iam.gserviceaccount.com
+        if gcloud run jobs describe dubbing-pipeline-job --region=us-central1 --project=$PROJECT_ID >/dev/null 2>&1; then
+          gcloud run jobs update dubbing-pipeline-job \
+            --region=us-central1 --image=$$IMAGE
+        else
+          gcloud run jobs create dubbing-pipeline-job \
+            --region=us-central1 \
+            --image=$$IMAGE \
+            --service-account=$$SA \
+            --memory=8Gi \
+            --cpu=4 \
+            --max-retries=1 \
+            --task-timeout=21600
+        fi
+
+images:
+  - 'us-central1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/dubbing-pipeline/app:$COMMIT_SHA'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+  machineType: 'E2_HIGHCPU_8'

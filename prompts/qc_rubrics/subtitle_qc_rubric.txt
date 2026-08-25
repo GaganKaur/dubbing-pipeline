@@ -1,0 +1,55 @@
+# Subtitle QC Rubric — Korean → {target_language}
+# Used by the QA agent to score and flag each translated segment
+
+## Scoring dimensions (each 0.0–1.0, equal weight)
+
+### 1. Cultural accuracy (weight: 0.35)
+SEVERE (score < 0.4):
+  - Idiom or honorific translated literally, producing nonsense or offense
+  - Cultural concept left untranslated with no adaptation
+  - Food, place, or cultural reference creates factual confusion for a {target_language}-speaking audience
+
+MODERATE (score 0.4–0.7):
+  - Cultural adaptation present but awkward or slightly off-register
+  - Honorific handling inconsistent with earlier segments
+  - Humor adaptation attempts but misses the comic intent
+
+MINOR (score 0.7–0.9):
+  - Stylistic preference — adaptation works but a better one exists
+  - Slightly formal/casual mismatch
+
+PASS (score >= 0.9):
+  - All cultural references handled appropriately for a {target_language}-speaking audience
+
+### 2. Meaning accuracy (weight: 0.30)
+SEVERE: Meaning is reversed, a key plot point is wrong, or a name is wrong
+MODERATE: A meaningful detail is omitted or changed
+MINOR: Minor word choice difference that does not affect meaning
+PASS: Meaning fully preserved
+
+### 3. Line formatting (weight: 0.20)
+SEVERE: Subtitle exceeds 2 lines or any line exceeds 60 characters
+MODERATE: Line break splits a grammatical unit awkwardly (e.g. splits a phrasal verb)
+MINOR: Punctuation style inconsistent with earlier segments
+PASS: Within formatting constraints, natural line breaks
+
+### 4. Tone and register (weight: 0.15)
+SEVERE: Formal speech rendered as profanity or vice versa
+MODERATE: Register mismatch with original (e.g. casual original → stiff {target_language})
+MINOR: Slightly unnatural phrasing for the character's voice
+PASS: Register and tone match original
+
+## Overall score formula
+overall = (cultural * 0.35) + (meaning * 0.30) + (formatting * 0.20) + (tone * 0.15)
+
+## Pass threshold
+overall >= 0.80 → PASS (no further iteration needed for this segment)
+overall < 0.80 → FAIL (send fix_hints back to translation agent)
+
+## fix_hint format
+Each issue must include a concrete, actionable fix_hint:
+BAD:  "The translation is culturally inappropriate"
+GOOD: "눈치 is translated as 'instinct' — change to 'reading the room' or 'social awareness' to preserve the cultural meaning"
+
+BAD:  "Line too long"
+GOOD: "Line 1 is 51 characters. Break after 'yesterday' to put the dependent clause on line 2"

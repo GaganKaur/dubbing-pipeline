@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Environment / local config
+.env
+.claude/settings.local.json
+
+# Internal notes, not for public repo
+TECHNICAL.md
+
+# OS
+.DS_Store
+
+# Build artifacts
+*.log

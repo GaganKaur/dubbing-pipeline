@@ -1,0 +1,13 @@
+.gcloudignore
+.git
+.gitignore
+.env
+.venv
+__pycache__
+*.pyc
+*.pyo
+*.egg-info
+output/
+/tmp/
+*.log
+.DS_Store
